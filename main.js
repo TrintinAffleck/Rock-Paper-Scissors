@@ -16,15 +16,21 @@ function getAIChoice() {
         default:
             console.log("Ai default choice this should never happen");
             break;
+        }
     }
-}
-
-let aiCount = 0;
-let playerCount = 0;
-
-function playRound(playerSelection, aiSelection = "")
-{   
-    while (true) {
+    
+    let aiCount = 0;
+    let playerCount = 0;
+    
+    function playRound(playerSelection, aiSelection)
+    {   
+        //If selections are the same redo aiSelection
+        if (playerSelection.toLowerCase() === aiSelection)
+        {
+            console.log("Its a tie pick again!")
+            return
+        }
+        while (true) {
         //Rock selected
         if (playerSelection.toLowerCase() === "rock")
         {   
@@ -79,12 +85,6 @@ function playRound(playerSelection, aiSelection = "")
                 break;
             }
         }
-        //If selections are the same redo aiSelection
-        while (playerSelection.toLowerCase() === aiSelection)
-        {
-            console.log("Choices are the same woops!")
-            aiSelection = getAIChoice();
-        }
     }
 }
 
@@ -102,7 +102,7 @@ function gameOn()
                 console.log("Invalid selection please try again!");
             }
             //Valid Input
-            else if (playerSelection.toLowerCase() === "rock" ||
+            else if (playerSelection.toLowerCase() === "rock"||
             playerSelection.toLowerCase() === "paper" ||
             playerSelection.toLowerCase() === "scissors")
             {
@@ -119,7 +119,10 @@ function gameOn()
                     console.log("Player wins the game!");
                     return
                 }
-                break;
+            }
+            else
+            {
+                console.log("Invalid selection please try again!");
             }
         }
     }
